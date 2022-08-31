@@ -9,8 +9,52 @@
 
     //array_chunck dividir un array en array mas pequenos
     $a_results = array_chunk($name,3);
-    echo '<pre>';
-    print_r($a_results);
-    echo '</pre>'
+  
+    //array_filter dado un array creas una funcion que cumpla una condicion 
+    // y se lo asignas a un variable
+    $a_sayayines = [
+        [
+            "name" => "Goku",
+            "ki" => 1200,        
+        ],
+        [
+            "name" => "Vegeta",
+            "ki" => 1000,        
+        ],
+        [
+            "name" => "Truks",
+            "ki" => 20000,        
+        ],
+        [
+            "name" => "Goten",
+            "ki" => 500,        
+        ],
+        [
+            "name" => "Kale",
+            "ki" => 900,        
+        ]
+    ];
+
+    
+    $powerUpSayayin = array_filter($a_sayayines, function($ki){
+        return $ki['ki'] <= 900 ;
+    });
+    $powerUpSayayin = array_column($powerUpSayayin,'name');
+    
+    // Agregando un nuevo key => value a un array
+    function addNewCharacteristic($array){
+        foreach ($array as $key => $value) {        
+            $value2 = rand(1,10);    
+            $array [$key] += array( 'newPowerUp' =>  $value2);
+            
+        }
+        return $array ;
+        
+    }
+    $a_sayayines = addNewCharacteristic($a_sayayines);
+
+     echo '<pre>';
+     print_r($a_sayayines);
+     echo '</pre>'
 
 ?>
