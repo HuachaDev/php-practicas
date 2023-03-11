@@ -1,55 +1,45 @@
 <?php
 
-/*  DECLARAR UNA CONSTANTE EN PHP define("","") 
-    define("SITE_NAME", "prueba");
-    echo SITE_NAME
-*/
-
-class Usuario{
-
-    public $id;
-    protected $array_vengadores;
-
-    public function  __construct(string $id)
-    {
-        $this->id = $id;
-        $this->array_vengadores = ["Iroman", "Thor","Hulk","Doctor Strange"];
-    }
+//require('Clases/usuario.php');
  
-    public function buscar_vengador(int $id = null): string {
-        return $this->array_vengadores[$id ?? $this->id];
-    }
+// $vengador = new Usuario(0); 
+// echo $vengador;
+// echo "<br>";
+// echo $vengador->search_user(3);
+// echo "<br>";
+// echo $vengador->getname_user();
+// echo "<br>";
+// echo $vengador->list_user();
 
-    public function getNombre_vengador() : string{
-        return $this->array_vengadores[ $this->id];
-    }
+// require('Clases/depedencia.php');
 
-    public function conociendo_vengador(): string {
-        $respuesta = "";
-        foreach ($this->array_vengadores as  $vengador){
-            $respuesta .= "<br>{$vengador}";
+// $database = new Database();
+// $new_users = new User($database);
+
+// //echo $new_users->listUser();
+// echo $new_users;
+
+//$new_users = new User();
+// require('Clases/claseAbstracta.php');
+
+//  $tiktokNew = new TiktokMedia(['users','users_deletes']);
+//  echo $tiktokNew->trends(1);
+//  echo "<br>";
+//  echo $tiktokNew->comments();
+//echo $tiktokNew->post();
+ 
+ require('Clases/anonima.php');
+ 
+ $newUser = new User(
+    new class
+    {
+        public function selectUsuarios(): string
+        {
+            return "SELECT * FROM usuarios";
         }
-        return $respuesta;
-       
     }
+ );
 
-
-    public function __toString()
-    {
-        return $this->buscar_vengador();
-    }
-
-}
- 
-
-
-$vengador = new Usuario(0); 
-echo $vengador;
-echo "<br>";
-echo $vengador->buscar_vengador(3);
-echo "<br>";
-echo $vengador->getNombre_vengador();
-echo "<br>";
-echo $vengador->conociendo_vengador();
+ echo $newUser->listUser();
 
 ?>
